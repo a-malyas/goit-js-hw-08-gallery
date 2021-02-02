@@ -23,7 +23,7 @@ function onImageClick(event) {
     const imageAlt = event.target.alt;
     changeImageSrc.setAttribute('src', imageUrl);
     changeImageSrc.setAttribute('alt', imageAlt);
-    window.addEventListener('keyup', isEscape);
+    window.addEventListener('keydown', isEscape);
 }
 
 function closeModal(event) {
@@ -31,18 +31,18 @@ function closeModal(event) {
     openModal.classList.remove('is-open');
     changeImageSrc.setAttribute('src', '');
     changeImageSrc.setAttribute('alt', '');
-    window.removeEventListener('keyup', isEscape);
+    window.removeEventListener('keydown', isEscape);
 }
 
 function closeOverlay(event) {
     event.preventDefault();
     if (event.target === event.currentTarget) {
-        openModal.classList.remove('is-open');
+        closeModal(event);
     }
 }
 
 function isEscape(event) {
     if (event.code === 'Escape') {
-        openModal.classList.remove('is-open');;
+        closeModal(event);
     }
 }
